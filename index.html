@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS Virtual Keyboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<h1>JS Virtual Keyboard</h1>
+<p>Initially, the keyboard was created as an html / css frame and lay around for a long time in some folder until I
+  decided to hang js on it. <br> (O.Nazarenko)</p>
+
+<body id="boddy">
+
+  <textarea name="area" class="area" id="area" wrap="on" cols="30" rows="5"
+    style="margin: 0px; width: 833px; height: 159px;" placeholder="Your Text Here..."></textarea>
+
+  <!-- <textarea name="area" id="area" style="margin: 0px; width: 833px; height: 159px;" >|</textarea> -->
+
+  <div class="container" onmousedown="return false" onselectstart="return false">
+    <div class="keyboard">
+      <!-- numbers -->
+      <div class="line dig">
+        <div class="keys" onclick="typeArea('~')">~</div>
+        <div class="keys" onclick="typeArea('1')">1</div>
+        <div class="keys" onclick="typeArea('2')">2</div>
+        <div class="keys" onclick="typeArea('3')">3</div>
+        <div class="keys" onclick="typeArea('4')">4</div>
+        <div class="keys" onclick="typeArea('5')">5</div>
+        <div class="keys" onclick="typeArea('6')">6</div>
+        <div class="keys" onclick="typeArea('7')">7</div>
+        <div class="keys" onclick="typeArea('8')">8</div>
+        <div class="keys" onclick="typeArea('9')">9</div>
+        <div class="keys" onclick="typeArea('0')">0</div>
+        <div class="keys" onclick="typeArea('-')">-</div>
+        <div class="keys" onclick="typeArea('=')">=</div>
+        <div class="keys backspace" id="backspace">Backspace</div>
+      </div>
+      <!-- simbols instead digits -->
+      <div class="line symb  hidden">
+        <div class="keys" onclick="typeArea('`')">`</div>
+        <div class="keys" onclick="typeArea('!')">!</div>
+        <div class="keys" onclick="typeArea('@')">@</div>
+        <div class="keys" onclick="typeArea('#')">#</div>
+        <div class="keys" onclick="typeArea('$')">$</div>
+        <div class="keys" onclick="typeArea('%')">%</div>
+        <div class="keys" onclick="typeArea('^')">^</div>
+        <div class="keys" onclick="typeArea(':')">:</div>
+        <div class="keys" onclick="typeArea('*')">*</div>
+        <div class="keys" onclick="typeArea('(')">(</div>
+        <div class="keys" onclick="typeArea(')')">)</div>
+        <div class="keys" onclick="typeArea('_')">_</div>
+        <div class="keys" onclick="typeArea('+')">+</div>
+        <div class="keys backspace2 letter-key" id="backspace2">Backspace</div>
+      </div>
+
+      <div class="shift" id="shift">
+        <!-- lower case -->
+        <div class="allLet" id="allLet">
+          <div class="line">
+            <div class="keys tab letter-key">Tab</div>
+            <div class="keys letr" onclick="typeArea('q')">q</div>
+            <div class="keys letr" onclick="typeArea('w')">w</div>
+            <div class="keys letr" onclick="typeArea('e')">e</div>
+            <div class="keys letr" onclick="typeArea('r')">r</div>
+            <div class="keys letr" onclick="typeArea('t')">t</div>
+            <div class="keys letr" onclick="typeArea('y')">y</div>
+            <div class="keys letr" onclick="typeArea('u')">u</div>
+            <div class="keys letr" onclick="typeArea('i')">i</div>
+            <div class="keys letr" onclick="typeArea('o')">o</div>
+            <div class="keys letr" onclick="typeArea('p')">p</div>
+            <div class="keys" onclick="typeArea('[')">[</div>
+            <div class="keys" onclick="typeArea(']')">]</div>
+          </div>
+          <div class="line">
+            <div class="keys caps letter-key" id="caps">Caps</div>
+            <div class="keys letr" onclick="typeArea('a')">a</div>
+            <div class="keys letr" onclick="typeArea('s')">s</div>
+            <div class="keys letr" onclick="typeArea('d')">d</div>
+            <div class="keys letr" onclick="typeArea('f')">f</div>
+            <div class="keys letr" onclick="typeArea('g')">g</div>
+            <div class="keys letr" onclick="typeArea('h')">h</div>
+            <div class="keys letr" onclick="typeArea('j')">j</div>
+            <div class="keys letr" onclick="typeArea('k')">k</div>
+            <div class="keys letr" onclick="typeArea('l')">l</div>
+            <div class="keys" onclick="typeArea(';')">;</div>
+            <div class="keys" onclick="typeArea( '´' )">'</div>
+            <div class="keys" onclick="typeArea('?')">?</div>
+          </div>
+          <div class="line">
+            <div class="keys lshift letter-key" id="lshift">Shift</div>
+            <div class=" keys letr" onclick="typeArea('z')">z</div>
+            <div class="keys letr" onclick="typeArea('x')">x</div>
+            <div class="keys letr" onclick="typeArea('c')">c</div>
+            <div class="keys letr" onclick="typeArea('v')">v</div>
+            <div class="keys letr" onclick="typeArea('b')">b</div>
+            <div class="keys letr" onclick="typeArea('n')">n</div>
+            <div class="keys letr" onclick="typeArea('m')">m</div>
+            <div class="keys" onclick="typeArea(',')">,</div>
+            <div class="keys" onclick="typeArea('.')">.</div>
+            <div class="keys" onclick="typeArea('/')">/</div>
+            <div class="keys no" onclick="typeArea('№')">№</div>
+            <div class="keys rshift letter-key">Shift</div>
+          </div>
+        </div>
+
+        <!-- upper case -->
+        <div class="allLetUp hidden" id="allLetUp">
+          <div class="line">
+            <div class="keys tab letter-key">Tab</div>
+            <div class="keys letr" onclick="typeArea('Q')">Q</div>
+            <div class="keys letr" onclick="typeArea('W')">W</div>
+            <div class="keys letr" onclick="typeArea('E')">E</div>
+            <div class="keys letr" onclick="typeArea('R')">R</div>
+            <div class="keys letr" onclick="typeArea('T')">T</div>
+            <div class="keys letr" onclick="typeArea('Y')">Y</div>
+            <div class="keys letr" onclick="typeArea('U')">U</div>
+            <div class="keys letr" onclick="typeArea('I')">I</div>
+            <div class="keys letr" onclick="typeArea('O')">O</div>
+            <div class="keys letr" onclick="typeArea('P')">P</div>
+            <div class="keys" onclick="typeArea('[')">[</div>
+            <div class="keys" onclick="typeArea(']')">]</div>
+          </div>
+          <div class="line">
+            <div class="keys caps2 letter-key" id="caps2">Caps</div>
+            <div class="keys letr" onclick="typeArea('A')">A</div>
+            <div class="keys letr" onclick="typeArea('S')">S</div>
+            <div class="keys letr" onclick="typeArea('D')">D</div>
+            <div class="keys letr" onclick="typeArea('F')">F</div>
+            <div class="keys letr" onclick="typeArea('G')">G</div>
+            <div class="keys letr" onclick="typeArea('H')">H</div>
+            <div class="keys letr" onclick="typeArea('J')">J</div>
+            <div class="keys letr" onclick="typeArea('K')">K</div>
+            <div class="keys letr" onclick="typeArea('L')">L</div>
+            <div class="keys" onclick="typeArea(';')">;</div>
+            <div class="keys" onclick="typeArea( '´' )">'</div>
+            <div class="keys" onclick="typeArea('?')">?</div>
+          </div>
+          <div class="line">
+            <div class="keys lshift0 letter-key" id="lshift0">Shift</div>
+            <div class="keys letr" onclick="typeArea('Z')">Z</div>
+            <div class="keys letr" onclick="typeArea('X')">X</div>
+            <div class="keys letr" onclick="typeArea('C')">C</div>
+            <div class="keys letr" onclick="typeArea('V')">V</div>
+            <div class="keys letr" onclick="typeArea('B')">B</div>
+            <div class="keys letr" onclick="typeArea('N')">N</div>
+            <div class="keys letr" onclick="typeArea('N')">M</div>
+            <div class="keys" onclick="typeArea(',')">,</div>
+            <div class="keys" onclick="typeArea('.')">.</div>
+            <div class="keys" onclick="typeArea('/')">/</div>
+            <div class="keys no" onclick="typeArea('№')">№</div>
+            <div class="keys rshift letter-key">Shift</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="shiftua hidden" id="shiftua">
+
+
+        <!-- all letters are small -->
+        <div class="allLetUa" id="allLetUa">
+          <div class="line">
+            <div class="keys tab letter-key">Tab</div>
+            <div class="keys letr" onclick="typeArea('й')">й</div>
+            <div class="keys letr" onclick="typeArea('ц')">ц</div>
+            <div class="keys letr" onclick="typeArea('у')">у</div>
+            <div class="keys letr" onclick="typeArea('к')">к</div>
+            <div class="keys letr" onclick="typeArea('е')">е</div>
+            <div class="keys letr" onclick="typeArea('н')">н</div>
+            <div class="keys letr" onclick="typeArea('г')">г</div>
+            <div class="keys letr" onclick="typeArea('ш')">ш</div>
+            <div class="keys letr" onclick="typeArea('щ')">щ</div>
+            <div class="keys letr" onclick="typeArea('з')">з</div>
+            <div class="keys" onclick="typeArea('х')">х</div>
+            <div class="keys" onclick="typeArea('ї')">ї</div>
+          </div>
+          <div class="line">
+            <div class="keys caps3 letter-key" id="caps3">Caps</div>
+            <div class="keys letr" onclick="typeArea('ф')">ф</div>
+            <div class="keys letr" onclick="typeArea('і')">і</div>
+            <div class="keys letr" onclick="typeArea('в')">в</div>
+            <div class="keys letr" onclick="typeArea('а')">а</div>
+            <div class="keys letr" onclick="typeArea('п')">п</div>
+            <div class="keys letr" onclick="typeArea('р')">р</div>
+            <div class="keys letr" onclick="typeArea('о')">о</div>
+            <div class="keys letr" onclick="typeArea('л')">л</div>
+            <div class="keys letr" onclick="typeArea('д')">д</div>
+            <div class="keys" onclick="typeArea('ж')">ж</div>
+            <div class="keys" onclick="typeArea( 'є' )">є</div>
+            <div class="keys" onclick="typeArea('?')">?</div>
+          </div>
+          <div class="line">
+            <div class="keys lshift1 letter-key" id="lshift1">Shift</div>
+            <div class="keys letr" onclick="typeArea('я')">я</div>
+            <div class="keys letr" onclick="typeArea('ч')">ч</div>
+            <div class="keys letr" onclick="typeArea('с')">с</div>
+            <div class="keys letr" onclick="typeArea('м')">м</div>
+            <div class="keys letr" onclick="typeArea('и')">и</div>
+            <div class="keys letr" onclick="typeArea('т')">т</div>
+            <div class="keys letr" onclick="typeArea('ь')">ь</div>
+            <div class="keys" onclick="typeArea('б')">б</div>
+            <div class="keys" onclick="typeArea('ю')">ю</div>
+            <div class="keys" onclick="typeArea('/')">/</div>
+            <div class="keys no" onclick="typeArea('№')">№</div>
+            <div class="keys rshift letter-key">Shift</div>
+          </div>
+        </div>
+
+        <!-- all letters are big -->
+        <div class="allLetUpUa hidden" id="allLetUpUa">
+          <div class="line">
+            <div class="keys tab letter-key">Tab</div>
+            <div class="keys letr" onclick="typeArea('Й')">Й</div>
+            <div class="keys letr" onclick="typeArea('Ц')">Ц</div>
+            <div class="keys letr" onclick="typeArea('У')">У</div>
+            <div class="keys letr" onclick="typeArea('К')">К</div>
+            <div class="keys letr" onclick="typeArea('Е')">Е</div>
+            <div class="keys letr" onclick="typeArea('Н')">Н</div>
+            <div class="keys letr" onclick="typeArea('Г')">Г</div>
+            <div class="keys letr" onclick="typeArea('Ш')">Ш</div>
+            <div class="keys letr" onclick="typeArea('Щ')">Щ</div>
+            <div class="keys letr" onclick="typeArea('З')">З</div>
+            <div class="keys" onclick="typeArea('Х')">Х</div>
+            <div class="keys" onclick="typeArea('Ї')">Ї</div>
+          </div>
+          <div class="line">
+            <div class="keys caps4 letter-key" id="caps4">Caps</div>
+            <div class="keys letr fuaup" onclick="typeArea('Ф')">Ф</div>
+            <div class="keys letr" onclick="typeArea('І')">І</div>
+            <div class="keys letr" onclick="typeArea('В')">В</div>
+            <div class="keys letr" onclick="typeArea('А')">А</div>
+            <div class="keys letr" onclick="typeArea('П')">П</div>
+            <div class="keys letr" onclick="typeArea('Р')">Р</div>
+            <div class="keys letr" onclick="typeArea('О')">О</div>
+            <div class="keys letr" onclick="typeArea('Л')">Л</div>
+            <div class="keys letr" onclick="typeArea('Д')">Д</div>
+            <div class="keys" onclick="typeArea('Ж')">Ж</div>
+            <div class="keys" onclick="typeArea( 'Є' )">Є</div>
+            <div class="keys" onclick="typeArea('?')">?</div>
+          </div>
+          <div class="line">
+            <div class="keys lshift2 letter-key" id="lshift2">Shift</div>
+            <div class="keys letr" onclick="typeArea('Я')">Я</div>
+            <div class="keys letr" onclick="typeArea('Ч')">Ч</div>
+            <div class="keys letr" onclick="typeArea('С')">С</div>
+            <div class="keys letr" onclick="typeArea('М')">М</div>
+            <div class="keys letr" onclick="typeArea('И')">И</div>
+            <div class="keys letr" onclick="typeArea('Т')">Т</div>
+            <div class="keys letr" onclick="typeArea('Ь')">Ь</div>
+            <div class="keys" onclick="typeArea('Б')">Б</div>
+            <div class="keys" onclick="typeArea('Ю')">Ю</div>
+            <div class="keys" onclick="typeArea('/')">/</div>
+            <div class="keys no" onclick="typeArea('№')">№</div>
+            <div class="keys rshift letter-key">Shift</div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- lower space row -->
+      <div class="line bottom">
+        <div class="keys lctrl letter-key">Ctrl</div>
+        <div class="keys letter-key">fn</div>
+        <div class="keys super letter-key">Super</div>
+        <div class="keys letter-key">Alt</div>
+        <div class="keys space" id="space" onclick="typeArea(' ')"></div>
+        <div class="keys letter-key">Alt</div>
+        <div class="keys letter-key">fn</div>
+        <div class="keys super letter-key">Super</div>
+        <div class="keys rctrl letter-key">Ctrl</div>
+      </div>
+      <div class="keys enter letter-key" id="enter">Enter</div>
+    </div>
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>
